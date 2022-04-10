@@ -1,35 +1,64 @@
 body{
-    /* background-image: linear-gradient(to bottom right, FloralWhite, Gainsboro); */
-    background-color: WhiteSmoke
+    background-color: WhiteSmoke;
+    margin:0;
 }
 
 .header{
     height:125px;
-    margin-top: 30px;
+    background-image: linear-gradient(to bottom right, FloralWhite, Gainsboro);
+    border-bottom: 10px;
+    border-bottom-color:crimson;
+    border-bottom-style: double;
+
+
 }
 
 h1{
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(80, 80, 80);
-    font-size: 3.5rem;
+    font-size: 2.25rem;
     margin-top:20px;
     float: left;
+    margin-left:20px;
 }
 
 .logo{
-    transform: scale(0.8);
+    transform: scale(0.6);
     width: 600px;
     float: right;
 
 }
 
+.signUp{
+    margin-left:43%;
+    transform: scale(1.9);
+    margin-bottom:100px;
+    width: fit-content;
+}
+
+label{
+    font-size: .75rem;
+
+}
+
+.authors{
+    margin-left: 20px;
+
+}
+
+#or{
+    margin-top: 10px;
+
+
+}
 
 
 .login{
+    font-family: Arial, Helvetica, sans-serif;
     transform: scale(1.9);
     width: min-content;
     margin-left:45%;
     margin-top:150px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 }
 
