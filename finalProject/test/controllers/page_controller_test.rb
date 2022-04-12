@@ -5,5 +5,8 @@ class PageControllerTest < ActionDispatch::IntegrationTest
     get page_index_url
     assert_response :success
   end
-
+  test "should get SignUpPage" do
+    get page_SignUpPage_url
+    assert_response :success
+  end
 end
