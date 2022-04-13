@@ -55,15 +55,10 @@ class Scraper
             
             item["sections"].each do |section|
                 
-                newsubCat = item["course"]["subject"] + item["course"]["catalogNumber"]
+                newsubCat = item["course"]["subject"]  + item["course"]["catalogNumber"]
                 if !@courseCatalog.has_key?(newsubCat)
-
-                    @courseCatalog["#{newsubCat}"] = {
-                      "title": item["course"]["title"], 
-                       "subCat": item["course"]["subject"] + " " + item["course"]["catalogNumber"],
-                       "MaxCH": item["course"]["maxUnits"],
-                       "MinCH": item["course"]["minUnits"]
-                    }
+                    Course.create( title: item["course"]["title"], subCat: item["course"]["subject"] + " " + item["course"]["catalogNumber"], MinCH: item["course"]["maxUnits"], MaxCH: item["course"]["minUnits"])
+                    @courseCatalog["#{newsubCat}"] = {}
                 end
 
             end
@@ -79,10 +74,6 @@ totalPages = @scraper.store_all_courses_page()
 
 for i in 1..totalPages
     @scraper.get_course_info(i)
-end
-
-File.open "db/CourseData.yml", "w" do |file|
-file << @scraper.courseCatalog.to_yaml
 end
 
 
