@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  subCat: MyString
+  MaxCH: 1
+  MinCH: MyString
+  integer: MyString
+
+two:
+  title: MyString
+  subCat: MyString
+  MaxCH: 1
+  MinCH: MyString
+  integer: MyString
