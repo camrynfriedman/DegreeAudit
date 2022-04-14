@@ -76,4 +76,5 @@ for i in 1..totalPages
     @scraper.get_course_info(i)
 end
 
+Degree.create name: 'Computer Science and Engineering'
 
