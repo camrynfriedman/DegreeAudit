@@ -1,21 +1,20 @@
-<h2>Login</h2>
-<form class= "login" action="" method="">
-<div>
-    <label for= "name">Name:</label>
-    <input type= "text", id="name", name="user_name"/>
-</div>
-<div>
-  <label for= "password">Password:</label>
-  <input type= "text", id="password", name="user_password"/>
-</div>
-<div class = "button">
-  <button>Login</button>
-</div>
-<p id="or">OR</p>
-</form>
+<% if current_user %>
+  <h2>Welcome</h2>
+  <%=link_to "Sign Out", destroy_user_session_path, method: :delete%>
+<%else%>
+  <h2>Login or Sign Up</h2>
 
-<form class= "signUp" action="/page/2">
-<div class = "button">
-  <button>Create an Account</button>
-</div>
-</form>
+  <%= form_for(:user, :url => session_path(:user)) do |f| %>
+    <div><%= f.label :email %><br />
+    <%= f.text_field :email %> </div>
+
+    <div><%= f.label :password %><br />
+    <%= f.password_field :password %> </div>
+
+    <div><%= f.check_box :remember_me %> </br>
+    <%= f.label :remember_me %></div>
+    <%= f.submit 'Sign In' %> 
+    <%=link_to "Sign Up", new_user_registration_path%>
+
+  <% end %>
+<%end%>
