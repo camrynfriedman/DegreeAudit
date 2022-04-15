@@ -77,4 +77,4 @@ for i in 1..totalPages
 end
 
 Degree.create name: 'Computer Science and Engineering'
-
+User.create username: 'admin', password: 'adminpassword'

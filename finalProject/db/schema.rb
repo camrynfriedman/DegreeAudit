@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_014641) do
+ActiveRecord::Schema.define(version: 2022_04_15_004254) do
 
   create_table "course_mappings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_04_14_014641) do
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "password"
   end
 
 end
