@@ -1,6 +1,31 @@
 <% if current_user %>
   <h2>Welcome</h2>
   <%=link_to "Sign Out", destroy_user_session_path, method: :delete%>
+
+
+  <div>
+    <%if current_user.admin?%>
+      <form action= "/page/adminReport">
+        <div>
+          <button>Generate Administrator Report</button>
+        </div>
+      </form>
+    <%else%>
+      <form action= "/page/studentComplete">
+        <div>
+          <button>Generate Completed Courses</button>
+        </div>
+      </form>
+
+      <form action= "/page/studentIncomplete">
+      <div>
+        <button>Generate Incomplete Courses</button>
+      </div>
+    </form>
+    <%end%>
+  
+  </div>
+  
 <%else%>
   <h2>Login or Sign Up</h2>
 

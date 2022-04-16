@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_155238) do
+ActiveRecord::Schema.define(version: 2022_04_16_000309) do
 
   create_table "course_mappings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_155238) do
     t.string "fname"
     t.string "lname"
     t.string "email_address"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
