@@ -77,4 +77,5 @@ for i in 1..totalPages
 end
 
 Degree.create name: 'Computer Science and Engineering'
-User.create username: 'admin', password: 'adminpassword'
+User.create email: 'admin@admin.com', username: 'admin', admin: 'true', password: 'adminpassword', password_confirmation: 'adminpassword'
+ 
