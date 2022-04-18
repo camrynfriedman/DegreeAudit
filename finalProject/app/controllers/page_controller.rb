@@ -1,4 +1,13 @@
 class PageController < ApplicationController
-  def home
+
+
+  def index
+
   end
+  def studentIncomplete
+    @Mappings = CourseMapping.all
+    @Finished = FinishedCourse.all
+    @DegreeProgress = DegreeInProgress.all
+  end
+
 end

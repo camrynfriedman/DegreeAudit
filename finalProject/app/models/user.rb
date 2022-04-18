@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #removed :recoverable to disable the "Forgot password?" option
   devise :database_authenticatable, :registerable,
-        :rememberable, :validatable
+        :rememberable, :validatable, :trackable
 
     has_many :finished_courses
     has_many :courses, through: :finished_courses
