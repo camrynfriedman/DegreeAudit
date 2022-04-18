@@ -13,8 +13,12 @@
 ActiveRecord::Schema.define(version: 2022_04_16_000309) do
 
   create_table "course_mappings", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "degree_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_mappings_on_course_id"
+    t.index ["degree_id"], name: "index_course_mappings_on_degree_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -27,8 +31,12 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
   end
 
   create_table "degree_in_progresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "degree_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["degree_id"], name: "index_degree_in_progresses_on_degree_id"
+    t.index ["user_id"], name: "index_degree_in_progresses_on_user_id"
   end
 
   create_table "degrees", force: :cascade do |t|
@@ -38,8 +46,12 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
   end
 
   create_table "finished_courses", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_finished_courses_on_course_id"
+    t.index ["user_id"], name: "index_finished_courses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,8 +61,6 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
     t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username"
-    t.string "password"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
