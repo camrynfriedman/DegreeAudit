@@ -9,16 +9,8 @@
 <table>
     <%@Courses.each do |c|%>
         <%@search.each do |s|%>
-            <%if c.subCat == s.subCat%>
-                <% check = false %>
-                <% @Mappings.each do |m| %>
-                    <% if m.course_id == c.id %>
-                        <%check = true %>
-                    <% end %>
-                <%end%>
-                <% if !check %>
-                    <%CourseMapping.create(course_id: c.id, degree_id: 1)%>
-                <%end%>
+            <%if c.subCat == s.subCat && !CourseMapping.exists?(course_id: c.id)%>
+                <%CourseMapping.create(course_id: c.id, degree_id: 1)%>
             <%end%>
         <%end%>
     <%end%>
