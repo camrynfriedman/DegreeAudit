@@ -12,6 +12,7 @@ class PageController < ApplicationController
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
     @DegreeProgress = DegreeInProgress.all
+    @Courses = Course.all
   end
 
 

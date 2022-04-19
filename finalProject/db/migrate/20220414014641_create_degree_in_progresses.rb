@@ -1,8 +1,8 @@
 class CreateDegreeInProgresses < ActiveRecord::Migration[6.0]
   def change
     create_table :degree_in_progresses do |t|
-      t.belongs_to :user, foreign_key: 'email'
-      t.belongs_to :degree, foreign_key: 'name'
+      t.belongs_to :user
+      t.belongs_to :degree
       t.timestamps
     end
   end
