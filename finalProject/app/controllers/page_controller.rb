@@ -4,10 +4,6 @@ class PageController < ApplicationController
   def index
     @DegreeSearch = DegreeInProgress.all
     @DegreeProgress = DegreeInProgress.create(degree_in_progress_params)
-    if @DegreeProgress.save
-        redirect_to @DegreeProgress, notice: 'Success!'
-
-    end
   end
 
   def majorRequirements
@@ -23,9 +19,6 @@ class PageController < ApplicationController
     @DegreeProgress = DegreeInProgress.all
     @Courses = Course.all
     @FinishedCreate = FinishedCourse.create(finished_course_params)
-    if @FinishedCreate.save
-        redirect_to @FinishedCreate, notice: 'Success!'
-    end
   end
 
   def studentComplete
