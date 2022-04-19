@@ -17,8 +17,16 @@
     </form>
     <%else%>
       <% if current_user.sign_in_count == 1 && !current_user.admin%>
+        <% check = false %>
+        <% @DegreeSearch.each do |degree| %>
+          <% if degree.user_id == current_user.id %>
+           <%check = true %>
+            <%end%>
+        <%end%>
+        <% if !check %>
           <% DegreeInProgress.create(user_id: current_user.id, degree_id: 1) %>
-      <%end%>
+          <%end%>
+        <%end%>
       <form action= "/page/studentComplete">
         <div>
           <button>Generate Completed Courses</button>

@@ -74,6 +74,4 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
 
   add_foreign_key "course_mappings", "courses"
   add_foreign_key "course_mappings", "degrees"
-  add_foreign_key "finished_courses", "courses"
-  add_foreign_key "finished_courses", "users"
 end
