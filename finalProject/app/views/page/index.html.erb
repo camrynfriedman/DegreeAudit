@@ -17,8 +17,7 @@
     </form>
     <%else%>
       <% if current_user.sign_in_count == 1 %>
-          <% DegreeInProgress.create(user: current_user.email, degree: "Computer Science and Engineering") %>
-
+          <% DegreeInProgress.create(user_id: current_user.id, degree_id: Degree.first.id) %>
       <%end%>
       <form action= "/page/studentComplete">
         <div>
@@ -27,10 +26,10 @@
       </form>
 
       <form action= "/page/studentIncomplete">
-      <div>
-        <button>Generate Incomplete Courses</button>
-      </div>
-    </form>
+        <div>
+          <button>Generate Incomplete Courses</button>
+        </div>
+      </form>
     <%end%>
   
   </div>
