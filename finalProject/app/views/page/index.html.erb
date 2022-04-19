@@ -16,8 +16,8 @@
       </div>
     </form>
     <%else%>
-      <% if current_user.sign_in_count == 1 %>
-          <% DegreeInProgress.create(user_id: current_user.id, degree_id: Degree.first.id) %>
+      <% if current_user.sign_in_count == 1 && !current_user.admin%>
+          <% DegreeInProgress.create(user_id: current_user.id, degree_id: 1) %>
       <%end%>
       <form action= "/page/studentComplete">
         <div>
