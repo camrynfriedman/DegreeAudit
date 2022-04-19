@@ -9,6 +9,14 @@ class PageController < ApplicationController
 
     end
   end
+
+  def majorRequirements
+    @search = Course.where(subCat: params[:category])
+    @Courses = Course.all
+    @CourseMapping = CourseMapping.create(course_mappings_params)
+    @Mappings = CourseMapping.all
+  end
+
   def studentIncomplete
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
@@ -35,5 +43,10 @@ class PageController < ApplicationController
   private
   def degree_in_progress_params
     params.permit(:id, :user_id, :degree_id)
+  end
+
+  private
+  def course_mappings_params
+    params.permit(:id, :course_id, :degree_id)
   end
 end

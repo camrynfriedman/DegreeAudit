@@ -1,8 +1,32 @@
 <h2>Major Requirements</h2>
-<p>Add required courses to the degree (in this case we only have Computer Science and Engineering</p>
-<p>Best Case Scenario: have list of all courses, then the admin can select if they want that to be a required course</p>
-<p>This would be added to the CourseMapping relation, which shows the relationship between degrees and courses</p>
 
+<p>Please enter a course you would like to add to the Computer Science Degree</p>
+
+<%= form_tag(page_majorRequirements_path) do %>
+    <%= text_field_tag 'category' %>
+<% end %>
+
+<table>
+    <%@Courses.each do |c|%>
+        <%@search.each do |s|%>
+            <%if c.subCat == s.subCat%>
+                <%CourseMapping.create(course_id: c.id, degree_id: 1)%>
+            <%end%>
+        <%end%>
+    <%end%>
+
+    <th>Courses in Computer Science Degree</th>
+
+    <%@Mappings.each do |m|%>
+        <%@Courses.each do |cm|%>
+            <%if m.course_id == cm.id %>
+                <tr>
+                <td><%= cm.subCat %></td>
+                </tr>
+            <%end%>
+        <%end%>
+    <%end%>
+</table>
 
 <form action="/page/index">
     <div>
