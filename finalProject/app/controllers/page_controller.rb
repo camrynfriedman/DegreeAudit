@@ -16,12 +16,12 @@ class PageController < ApplicationController
   end
 
   def studentIncomplete
+    @search = Course.where(subCat: params[:category])
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
     @DegreeProgress = DegreeInProgress.all
     @Courses = Course.all
     @FinishedCreate = FinishedCourse.create(finished_course_params)
- 
   end
 
   def studentComplete

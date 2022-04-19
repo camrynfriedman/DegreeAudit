@@ -6,7 +6,25 @@
     </div>
 </form>
 
+
+<%= form_tag(page_studentIncomplete_path) do %>
+    <%= text_field_tag 'category' %>
+<% end %>
+
+
+<%@Courses.each do |c|%>
+    <% @search.each do |s|%>
+        <%if c.subCat == s.subCat && !FinishedCourse.exists?(user_id: current_user.id, course_id: c.id)%>
+            <%FinishedCourse.create(user_id: current_user.id, course_id: c.id)%>
+        <%end%>
+    <%end%>
+<%end%>
+
 <table>
+
+
+
+
     <tr>
         <th>Catalog Number</th>
         <th>Description</th>
