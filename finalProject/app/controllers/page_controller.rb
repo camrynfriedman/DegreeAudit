@@ -4,6 +4,7 @@ class PageController < ApplicationController
   def index
     @DegreeSearch = DegreeInProgress.all
     @DegreeProgress = DegreeInProgress.create(degree_in_progress_params)
+
   end
 
   def majorRequirements
@@ -11,6 +12,7 @@ class PageController < ApplicationController
     @Courses = Course.all
     @CourseMapping = CourseMapping.create(course_mappings_params)
     @Mappings = CourseMapping.all
+    
   end
 
   def studentIncomplete
@@ -19,6 +21,7 @@ class PageController < ApplicationController
     @DegreeProgress = DegreeInProgress.all
     @Courses = Course.all
     @FinishedCreate = FinishedCourse.create(finished_course_params)
+ 
   end
 
   def studentComplete
