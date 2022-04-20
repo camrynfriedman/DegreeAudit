@@ -7,13 +7,18 @@ class PageController < ApplicationController
 
   end
 
+  def adminReport
+    @Users = User.all
+    @report = User.where(params[:user_id])
+  end
   def userReport
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
     @DegreeProgress = DegreeInProgress.all
     @Courses = Course.all
+    @report = User.find(params[:user_id])
   end
-  
+
   def majorRequirements
     @search = Course.where(subCat: params[:category])
     @Courses = Course.all

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'page/userReport'
   post'page/majorRequirements' => 'page#majorRequirements'
   post'page/studentIncomplete' => 'page#studentIncomplete'
+  post'page/adminReport' => 'page#userReport'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'page#index'
   

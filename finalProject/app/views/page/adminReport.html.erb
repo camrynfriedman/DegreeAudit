@@ -2,11 +2,15 @@
 <p>Generate a table with users and the courses they have compelted and which ones are still required</p>
 
 <table>
+<tr>
+    <th>Student Email</th>
+    <th></th>
+</tr>
     <%@Users.each do |u|%>
         <% if u.id != 1 %>
             <tr>
                 <td><%= u.email %></td>
-                <td><%= link_to 'Generate Report', page_userReport_path(u) %> </td>
+                <td><%= link_to 'Generate Report', page_userReport_path(user_id: u.id) %> </td>
             </tr>
         <%end%>
     <%end%>
