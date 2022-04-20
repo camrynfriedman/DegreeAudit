@@ -7,11 +7,19 @@
 <% end %>
 
 <table>
+    <% added = 0 %>
     <%@Courses.each do |c|%>
         <%@search.each do |s|%>
             <%if c.subCat == s.subCat && !CourseMapping.exists?(course_id: c.id)%>
+                <p>Successfully added <%= s.subCat%> as a degree requirement!</p>
+                <%added = 1%>
                 <%CourseMapping.create(course_id: c.id, degree_id: 1)%>
             <%end%>
+        <%end%>
+    <%end%>
+    <%if added == 0%>
+        <% @search.each do |s|%>
+            <p>Could not add <%= s.subCat%> as a degree requirement.</p>
         <%end%>
     <%end%>
 
