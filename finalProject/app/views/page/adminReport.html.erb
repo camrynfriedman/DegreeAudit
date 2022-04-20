@@ -1,6 +1,17 @@
 <h2>Administrator Report</h2>
 <p>Generate a table with users and the courses they have compelted and which ones are still required</p>
 
+<table>
+    <%@Users.each do |u|%>
+        <% if u.id != 1 %>
+            <tr>
+                <td><%= u.email %></td>
+                <td><%= link_to 'Generate Report', page_userReport_path(u) %> </td>
+            </tr>
+        <%end%>
+    <%end%>
+</table>
+
 <form action="/page/index">
     <div>
         <button>Back to Home</button>
