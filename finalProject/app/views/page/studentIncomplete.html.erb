@@ -1,11 +1,5 @@
 <h2>Student Incomplete Courses Report</h2>
 <p>Generate a table with users and the courses still need to complete</p>
-<form action="/page/index">
-    <div>
-        <button>Back to Home</button>
-    </div>
-</form>
-
 
 <%= form_tag(page_studentIncomplete_path) do %>
     <%= text_field_tag 'category' %>
@@ -15,7 +9,7 @@
 <%@Courses.each do |c|%>
     <% @search.each do |s|%>
         <%if c.subCat == s.subCat && !FinishedCourse.exists?(user_id: current_user.id, course_id: c.id)%>
-            <p>Successfully added <%= s.subCat%>!</p>
+            <p>Successfully added <%= s.subCat%> as a finished course!</p>
             <%added = 1%>
             <%FinishedCourse.create(user_id: current_user.id, course_id: c.id)%>
         <%end%>
@@ -23,7 +17,7 @@
 <%end%>
 <%if added == 0%>
     <% @search.each do |s|%>
-        <p>Could not add <%= s.subCat%>.</p>
+        <p>Could not add <%= s.subCat%> as a finished course.</p>
     <%end%>
 <%end%>
 
@@ -62,3 +56,9 @@
     <%end%>
 <%end%>
 </table>
+
+<form action="/page/index">
+    <div>
+        <button>Back to Home</button>
+    </div>
+</form>
