@@ -41,21 +41,4 @@
     <%end%>
   
   </div>
-  
-<%else%>
-  <h2>Login or Sign Up</h2>
-
-  <%= form_for(:user, :url => session_path(:user)) do |f| %>
-    <div><%= f.label :email %><br />
-    <%= f.text_field :email %> </div>
-
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %> </div>
-
-    <div><%= f.check_box :remember_me %>
-    <%= f.label :remember_me %></div>
-    <%= f.submit 'Sign In' %> 
-    <%=link_to "Sign Up", new_user_registration_path%>
-
-  <% end %>
 <%end%>

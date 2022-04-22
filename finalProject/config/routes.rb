@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  devise_scope :user do
+    authenticated :user do
+      root 'page#index', as: :authenticated_root
+    end
+  
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   get 'page/index'
   get 'page/adminReport'
   get '/page/majorRequirements'
@@ -13,5 +24,6 @@ Rails.application.routes.draw do
   root 'page#index'
   
   resources :page
+
 
 end
