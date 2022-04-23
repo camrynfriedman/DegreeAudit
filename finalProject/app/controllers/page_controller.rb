@@ -20,7 +20,7 @@ class PageController < ApplicationController
   end
 
   def majorRequirements
-    @search = Course.where(subCat: params[:category])
+    @search = Course.find_by(subCat: params[:category])
     @Courses = Course.all
     @CourseMapping = CourseMapping.create(course_mappings_params)
     @Mappings = CourseMapping.all
@@ -28,7 +28,7 @@ class PageController < ApplicationController
   end
 
   def studentIncomplete
-    @search = Course.where(subCat: params[:category])
+    @search = Course.find_by(subCat: params[:category])
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
     @DegreeProgress = DegreeInProgress.all

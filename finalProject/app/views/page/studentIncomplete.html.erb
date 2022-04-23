@@ -6,18 +6,20 @@
 <% end %>
 
 <% added = 0 %>
-<%@Courses.each do |c|%>
-    <% @search.each do |s|%>
-        <%if c.subCat == s.subCat && !FinishedCourse.exists?(user_id: current_user.id, course_id: c.id)%>
-            <p>Successfully added <%= s.subCat%> as a finished course!</p>
+<%if @search != nil%>
+    <%@Courses.each do |c|%>
+        <%if c.subCat == @search.subCat && !FinishedCourse.exists?(user_id: current_user.id, course_id: c.id)%>
+            <p>Successfully added <%= @search.subCat%> as a finished course!</p>
             <%added = 1%>
             <%FinishedCourse.create(user_id: current_user.id, course_id: c.id)%>
         <%end%>
     <%end%>
 <%end%>
 <%if added == 0%>
-    <% @search.each do |s|%>
-        <p>Could not add <%= s.subCat%> as a finished course.</p>
+    <%if @search == nil && params[:category] != nil%>
+        <p><%=params[:category]%> does not exist as a course.</p>
+    <%elsif @search != nil%>
+        <p>You have already finished <%=@search.subCat%>.</p>
     <%end%>
 <%end%>
 
