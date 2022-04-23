@@ -4,7 +4,7 @@
 
 
   <div>
-    <%if current_user.admin?%>
+    <% if current_user.admin? %>
       <form action= "/page/adminReport">
         <div>
           <button>Generate Administrator Report</button>
@@ -15,12 +15,12 @@
         <button>Change Major Requirements</button>
       </div>
     </form>
-    <%else%>
-      <% if current_user.sign_in_count == 1 && !current_user.admin%>
+    <% else %>
+      <% if current_user.sign_in_count == 1 && !current_user.admin %>
         <% check = false %>
         <% @DegreeSearch.each do |degree| %>
           <% if degree.user_id == current_user.id %>
-           <%check = true %>
+           <% check = true %>
             <%end%>
         <%end%>
         <% if !check %>
@@ -29,13 +29,7 @@
         <%end%>
       <form action= "/page/studentComplete">
         <div>
-          <button>Generate Completed Courses</button>
-        </div>
-      </form>
-
-      <form action= "/page/studentIncomplete">
-        <div>
-          <button>Generate Incomplete Courses</button>
+          <button>Generate Degree Audit</button>
         </div>
       </form>
     <%end%>

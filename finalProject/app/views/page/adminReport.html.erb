@@ -6,7 +6,7 @@
     <th>Student Email</th>
     <th></th>
 </tr>
-    <%@Users.each do |u|%>
+    <% @Users.each do |u| %>
         <% if u.id != 1 %>
             <tr>
                 <td><%= u.email %></td>

@@ -1,5 +1,27 @@
-<h2>Student Complete Courses Report</h2>
-<p>Generate a table with users and the courses they have completed</p>
+<h2>Student Degree Audit</h2>
+<p>Generate a degree audit of completed courses and remaining requirements.</p>
+
+<%= form_tag(page_studentComplete_path) do %>
+    <%= text_field_tag 'category' %>
+<% end %>
+
+<% added = 0 %>
+<% if @search != nil %>
+    <% @Courses.each do |c| %>
+        <% if c.subCat == @search.subCat && !FinishedCourse.exists?(user_id: current_user.id, course_id: c.id) %>
+            <p>Successfully added <%= @search.subCat %> as a finished course!</p>
+            <% added = 1 %>
+            <% FinishedCourse.create(user_id: current_user.id, course_id: c.id) %>
+        <%end%>
+    <%end%>
+<%end%>
+<% if added == 0 %>
+    <% if @search == nil && params[:category] != nil %>
+        <p><%= params[:category] %> does not exist as a course.</p>
+    <% elsif @search != nil %>
+        <p>You have already finished <%= @search.subCat %>.</p>
+    <%end%>
+<%end%>
 
 <h3>Completed Major Courses</h3>
 <table>
@@ -7,25 +29,53 @@
         <th>Catalog Number</th>
         <th>Description</th>
     </tr>
+
     <% @DegreeProgress.each do |degree| %>
         <% if degree.user_id == current_user.id %>
             <% @Mappings.each do |mapping| %>
                 <% if mapping.degree_id == degree.degree_id %>
                     <% check = false %>
                     <% @Finished.each do |finished| %>
-                        <% if current_user.id == finished.user_id && finished.course_id == mapping.course_id%>
+                        <% if current_user.id == finished.user_id && finished.course_id == mapping.course_id %>
                             <% check = true %>
                         <%end%>
                     <%end%>
                     <% if check %>
-                        <% @Courses.each do |course| %>
-                            <% if course.id ==  mapping.course_id %>
-                                <tr>
-                                <td><%= course.subCat %></td>
-                                <td><%= course.title %></td>
-                                </tr>
-                            <%end%>
+                        <% thisCourse = @Courses.find_by(id: mapping.course_id) %>
+                        <tr>
+                        <td><%= thisCourse.subCat %></td>
+                        <td><%= thisCourse.title %></td>
+                        </tr>
+                    <%end%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
+</table>
+
+<h3>Incomplete Major Courses</h3>
+<table>
+    <tr>
+        <th>Catalog Number</th>
+        <th>Description</th>
+    </tr>
+    
+    <% @DegreeProgress.each do |degree| %>
+        <% if degree.user_id == current_user.id %>
+            <% @Mappings.each do |mapping| %>
+                <% if mapping.degree_id == degree.degree_id %>
+                    <% check = false %>
+                    <% @Finished.each do |finished| %>
+                        <% if current_user.id == finished.user_id && finished.course_id == mapping.course_id %>
+                            <% check = true %>
                         <%end%>
+                    <%end%>
+                    <% if !check %>
+                        <% thisCourse = @Courses.find_by(id: mapping.course_id) %>
+                        <tr>
+                        <td><%= thisCourse.subCat %></td>
+                        <td><%= thisCourse.title %></td>
+                        </tr>
                     <%end%>
                 <%end%>
             <%end%>
@@ -41,16 +91,16 @@
     </tr>
 
     <% @DegreeProgress.each do |degree| %>
-        <% if degree.user_id == current_user.id%>
-            <% @Finished.each do |finished|%>
-                <% if finished.user_id == current_user.id%>
-                    <% reqd = false %>
+        <% if degree.user_id == current_user.id %>
+            <% @Finished.each do |finished| %>
+                <% if finished.user_id == current_user.id %>
+                    <% check = false %>
                     <% @Mappings.each do |mapping| %>
                         <% if mapping.degree_id == degree.degree_id && mapping.course_id == finished.course_id %>
-                            <%reqd = true%>
+                            <% check = true %>
                         <%end%>
                     <%end%>
-                    <% if !reqd %>
+                    <% if !check %>
                         <% thisCourse = @Courses.find_by(id: finished.course_id) %>
                         <tr>
                         <td><%= thisCourse.subCat %></td>

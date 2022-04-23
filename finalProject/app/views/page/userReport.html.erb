@@ -8,25 +8,22 @@
     </tr>
 
     <% @DegreeProgress.each do |degree| %>
-        <% if degree.user_id == @report.id%>
+        <% if degree.user_id == @report.id %>
             <% @Mappings.each do |mapping| %>
                 <% if mapping.degree_id == degree.degree_id %>
                     <% check = false %>
                     <% @Finished.each do |finished| %>
-                        <% if @report.id == finished.user_id && finished.course_id == mapping.course_id%>
+                        <% if @report.id == finished.user_id && finished.course_id == mapping.course_id %>
                             <% check = true %>
                         <%end%>
-                    <% end %>
+                    <%end%>
                     <% if check %>
-                        <% @Courses.each do |course| %>
-                            <% if course.id ==  mapping.course_id %>
-                                <tr>
-                                <td><%= course.subCat %></td>
-                                <td><%= course.title %></td>
-                                </tr>
-                            <%end%>
-                        <%end%>
-                    <% end %>
+                        <% thisCourse = @Courses.find_by(id: mapping.course_id) %>
+                        <tr>
+                        <td><%= thisCourse.subCat %></td>
+                        <td><%= thisCourse.title %></td>
+                        </tr>
+                    <%end%>
                 <%end%>
             <%end%>
         <%end%>
@@ -41,27 +38,23 @@
         <th>Description</th>
     </tr>
 
-
     <% @DegreeProgress.each do |degree| %>
         <% if degree.user_id == @report.id %>
             <% @Mappings.each do |mapping| %>
                 <% if mapping.degree_id == degree.degree_id %>
                     <% check = false %>
                     <% @Finished.each do |finished| %>
-                        <% if @report.id == finished.user_id && finished.course_id == mapping.course_id%>
+                        <% if @report.id == finished.user_id && finished.course_id == mapping.course_id %>
                             <% check = true %>
                         <%end%>
-                    <% end %>
+                    <%end%>
                     <% if !check %>
-                        <% @Courses.each do |course| %>
-                            <% if course.id ==  mapping.course_id %>
-                                <tr>
-                                <td><%= course.subCat %></td>
-                                <td><%= course.title %></td>
-                                </tr>
-                            <%end%>
-                        <%end%>
-                    <% end %>
+                        <% thisCourse = @Courses.find_by(id: mapping.course_id) %>
+                        <tr>
+                        <td><%= thisCourse.subCat %></td>
+                        <td><%= thisCourse.title %></td>
+                        </tr>
+                    <%end%>
                 <%end%>
             <%end%>
         <%end%>
@@ -77,16 +70,16 @@
     </tr>
 
     <% @DegreeProgress.each do |degree| %>
-        <% if degree.user_id == @report.id%>
-            <% @Finished.each do |finished|%>
-                <% if finished.user_id == @report.id%>
-                    <% reqd = false %>
+        <% if degree.user_id == @report.id %>
+            <% @Finished.each do |finished| %>
+                <% if finished.user_id == @report.id %>
+                    <% check = false %>
                     <% @Mappings.each do |mapping| %>
                         <% if mapping.degree_id == degree.degree_id && mapping.course_id == finished.course_id %>
-                            <%reqd = true%>
+                            <% check = true %>
                         <%end%>
                     <%end%>
-                    <% if !reqd %>
+                    <% if !check %>
                         <% thisCourse = @Courses.find_by(id: finished.course_id) %>
                         <tr>
                         <td><%= thisCourse.subCat %></td>
