@@ -1,6 +1,6 @@
 <h2>Student Report</h2>
 
-<h3>Completed Courses</h3>
+<h3>Completed Major Courses</h3>
 <table>
     <tr>
         <th>Catalog Number</th>
@@ -19,7 +19,7 @@
                     <% end %>
                     <% if check %>
                         <% @Courses.each do |course| %>
-                        <% if course.id ==  mapping.course_id %>
+                            <% if course.id ==  mapping.course_id %>
                                 <tr>
                                 <td><%= course.subCat %></td>
                                 <td><%= course.title %></td>
@@ -34,7 +34,7 @@
 
 </table>
 
-<h3>Incomplete Courses</h3>
+<h3>Incomplete Major Courses</h3>
 <table>
     <tr>
         <th>Catalog Number</th>
@@ -54,7 +54,7 @@
                     <% end %>
                     <% if !check %>
                         <% @Courses.each do |course| %>
-                        <% if course.id ==  mapping.course_id %>
+                            <% if course.id ==  mapping.course_id %>
                                 <tr>
                                 <td><%= course.subCat %></td>
                                 <td><%= course.title %></td>
@@ -67,6 +67,36 @@
         <%end%>
     <%end%>
 
+</table>
+
+<h3>Completed Non-Major Courses</h3>
+<table>
+    <tr>
+        <th>Catalog Number</th>
+        <th>Description</th>
+    </tr>
+
+    <% @DegreeProgress.each do |degree| %>
+        <% if degree.user_id == @report.id%>
+            <% @Finished.each do |finished|%>
+                <% if finished.user_id == @report.id%>
+                    <% reqd = false %>
+                    <% @Mappings.each do |mapping| %>
+                        <% if mapping.degree_id == degree.degree_id && mapping.course_id == finished.course_id %>
+                            <%reqd = true%>
+                        <%end%>
+                    <%end%>
+                    <% if !reqd %>
+                        <% thisCourse = @Courses.find_by(id: finished.course_id) %>
+                        <tr>
+                        <td><%= thisCourse.subCat %></td>
+                        <td><%= thisCourse.title %></td>
+                        </tr>
+                    <%end%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
 </table>
 
 <form action="/page/adminReport">
