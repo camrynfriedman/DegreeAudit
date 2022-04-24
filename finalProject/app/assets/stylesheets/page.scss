@@ -1,11 +1,25 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+html, body{
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
 body{
+    display: flex;
+    flex-direction: column;
     background-color: WhiteSmoke;
     margin:0;
 }
+.header, .footer{
+    flex: none;
+}
 
+.middle{
+    flex: auto;
+}
 .header{
     height:125px;
     background-image: linear-gradient(to bottom right, FloralWhite, Gainsboro);
