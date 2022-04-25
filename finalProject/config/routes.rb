@@ -16,9 +16,12 @@ Rails.application.routes.draw do
   get '/page/majorRequirements'
   get 'page/studentComplete'
   get 'page/userReport'
+  get 'page/addCourse'
+
   post'page/majorRequirements' => 'page#majorRequirements'
   post'page/studentComplete' => 'page#studentComplete'
   post'page/adminReport' => 'page#userReport'
+  post'page/addCourse' => 'page#addCourse'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'page#index'
   

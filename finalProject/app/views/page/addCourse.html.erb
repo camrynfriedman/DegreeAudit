@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag "signUp" %>
+
+<div class = "text-center", "alignment">
+
+  <h2>Add Course</h2>
+
+  <%= form_tag(page_addCourse_path) do%>
+
+    <div class="field">
+      <label for=":subCat">Catagory</label><br />
+      <input id = "subCat" name="subCat" type="text"/ >
+    </div>
+
+    <div class="field">
+      <label for=":title">Title</label><br />
+      <input id = "title" name="title" type="text"/ >
+    </div>
+
+    <div class="field">
+        <label for=":MaxCH">Maximum Credit Hours</label><br />
+        <input id = "MaxCH" name="MaxCH" type="text"/ >
+    </div>
+
+    <div class="field">
+        <label for=":MinCH">Minimum Credit Hours</label><br />
+        <input id = "MinCH" name="MinCH" type="text"/ >
+    </div>
+
+    <div class="actions", "button-padding-top">
+        <button class="btn btn-primary btn-block button-top" >Add Class</button>
+    </div>
+  <% end %>
+</div>
+
+
+
+<form action="/page/index">
+    <div>
+        <button class="btn btn-primary btn-block button-top">Back to Home</button>
+    </div>
+</form>

@@ -37,6 +37,15 @@ class PageController < ApplicationController
     @FinishedCreate = FinishedCourse.create(finished_course_params)
   end
 
+  def addCourse
+    @Course = Course.create(course_params)
+  end
+
+  private
+  def course_params
+    params.permit(:id, :title, :subCat, :MaxCH, :MinCH)
+  end
+
  private
   def finished_course_params
     params.permit(:id, :user_id, :course_id)
