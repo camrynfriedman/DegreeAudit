@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "title"
-    t.string "subCat"
-    t.integer "MaxCH"
-    t.integer "MinCH"
+    t.string "title", default: "", null: false
+    t.string "subCat", default: "", null: false
+    t.integer "MaxCH", default: 0, null: false
+    t.integer "MinCH", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,8 +74,4 @@ ActiveRecord::Schema.define(version: 2022_04_16_000309) do
 
   add_foreign_key "course_mappings", "courses"
   add_foreign_key "course_mappings", "degrees"
-  add_foreign_key "degree_in_progresses", "degrees"
-  add_foreign_key "degree_in_progresses", "users"
-  add_foreign_key "finished_courses", "courses"
-  add_foreign_key "finished_courses", "users"
 end

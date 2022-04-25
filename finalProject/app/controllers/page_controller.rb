@@ -38,7 +38,23 @@ class PageController < ApplicationController
   end
 
   def addCourse
-    @Course = Course.create(course_params)
+    @addCourse = Course.new(course_params)
+
+    @Courses = Course.all
+
+
+    if @addCourse.title.length > 0 && @addCourse.subCat.length > 0 && @addCourse.MaxCH != nil && @addCourse.MinCH != nil 
+      check = true
+      @Courses.each do |c|
+        if c.subCat == @addCourse.subCat
+          check = false
+        end
+      end
+      if check
+      @addCourse.save
+      end
+    end
+
   end
 
   private
