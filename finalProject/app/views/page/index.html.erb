@@ -40,6 +40,11 @@
           <% DegreeInProgress.create(user_id: current_user.id, degree_id: 1) %>
           <%end%>
         <%end%>
+        <ul class= "admin_navbar">
+        <li id = "home_active"><%= link_to 'Home', page_index_path %></li>
+        <li id = "degree_audit"><%= link_to 'Degee Audit', page_studentComplete_path %></li>
+        <li id= "signOut"><%=link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
+      </ul>
       <form action= "/page/studentComplete">
         <div>
           <button>Generate Degree Audit</button>
