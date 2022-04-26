@@ -3,11 +3,12 @@
 
 <nav class= "navbar navbar-expand-sm navbar-light">
 <ul class= "navbar-nav">
-  <li class= "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
   <li class = "nav-item"><%= link_to 'Home', page_index_path, :class => "nav-link"%></li>
   <li class= "nav-item"><%= link_to 'Generate Reports', page_adminReport_path, :class => "nav-link" %></li>
   <li class= "nav-item"><%= link_to 'Major Requirements', page_majorRequirements_path, :class => "nav-link" %></li>
   <li class= "nav-item active"><%= link_to 'Add New Course', page_addCourse_path, :class => "nav-link" %></li>
+  <li class= "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
+
 </ul>
 </nav>
 <div class = "text-center", "alignment">
@@ -18,23 +19,23 @@
   <%= form_tag(page_addCourse_path) do%>
 
     <div class="field">
-      <label for=":subCat">Catagory</label><br />
+      <label for=":subCat">Catalog Number (ie CSE 2221)</label><br />
       <input id = "subCat" name="subCat" type="text"/ >
     </div>
 
     <div class="field">
-      <label for=":title">Title</label><br />
+      <label for=":title">Course Title (ie Software I)</label><br />
       <input id = "title" name="title" type="text"/ >
-    </div>
-
-    <div class="field">
-        <label for=":MaxCH">Maximum Credit Hours</label><br />
-        <input id = "MaxCH" name="MaxCH" type="text"/ >
     </div>
 
     <div class="field">
         <label for=":MinCH">Minimum Credit Hours</label><br />
         <input id = "MinCH" name="MinCH" type="text"/ >
+    </div>
+
+    <div class="field">
+        <label for=":MaxCH">Maximum Credit Hours</label><br />
+        <input id = "MaxCH" name="MaxCH" type="text"/ >
     </div>
 
     <div class="actions", "button-padding-top">
