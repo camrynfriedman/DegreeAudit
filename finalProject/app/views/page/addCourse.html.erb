@@ -1,6 +1,17 @@
-<%= stylesheet_link_tag "signUp" %>
+<%= stylesheet_link_tag "addCourse" %>
 
+
+<nav class= "navbar navbar-expand-sm navbar-light">
+<ul class= "navbar-nav">
+  <li class= "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
+  <li class = "nav-item"><%= link_to 'Home', page_index_path, :class => "nav-link"%></li>
+  <li class= "nav-item"><%= link_to 'Generate Reports', page_adminReport_path, :class => "nav-link" %></li>
+  <li class= "nav-item"><%= link_to 'Major Requirements', page_majorRequirements_path, :class => "nav-link" %></li>
+  <li class= "nav-item active"><%= link_to 'Add New Course', page_addCourse_path, :class => "nav-link" %></li>
+</ul>
+</nav>
 <div class = "text-center", "alignment">
+
 
   <h2>Add Course</h2>
 
@@ -32,8 +43,3 @@
   <% end %>
 </div>
 
-<form action="/page/adminReport">
-    <div>
-        <button class="btn btn-primary btn-block button-top">Back to Reports</button>
-    </div>
-</form>
