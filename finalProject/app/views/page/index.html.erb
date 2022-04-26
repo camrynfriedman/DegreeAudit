@@ -1,32 +1,22 @@
 <% if current_user %>
-  <h2>Welcome</h2>
+  
+
  
 
 
   <div>
     <% if current_user.admin? %>
-
-    <ul class= "admin_navbar">
-      <li id = "home_active"><%= link_to 'Home', page_index_path %></li>
-      <li id = "genReports"><%= link_to 'Generate Reports', page_adminReport_path %></li>
-      <li id= "majorReq"><%= link_to 'Major Requirements', page_majorRequirements_path %></li>
-      <li id= "signOut"><%=link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
+  
+    <nav class= "navbar navbar-expand-sm navbar-light">
+    <ul class= "navbar-nav">
+      <li class = "nav-item active"><%= link_to 'Home', page_index_path, :class => "nav-link"%></li>
+      <li class= "nav-item"><%= link_to 'Generate Reports', page_adminReport_path, :class => "nav-link" %></li>
+      <li class= "nav-item"><%= link_to 'Major Requirements', page_majorRequirements_path, :class => "nav-link" %></li>
+      <li class= "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
     </ul>
-      <form action= "/page/adminReport">
-        <div>
-          <button>Generate Administrator Report</button>
-        </div>
-      </form>
-      <form action= "/page/majorRequirements">
-      <div>
-        <button>Change Major Requirements</button>
-      </div>
-    </form>
-    <form action="/page/addCourse">
-    <div>
-        <button>Back to Home</button>
-    </div>
-    </form>
+    </nav>
+    <h2>Welcome</h2>
+ 
 
     <% else %>
       <% if current_user.sign_in_count == 1 && !current_user.admin %>
@@ -39,17 +29,16 @@
         <% if !check %>
           <% DegreeInProgress.create(user_id: current_user.id, degree_id: 1) %>
           <%end%>
-        <%end%>
-        <ul class= "admin_navbar">
-        <li id = "home_active"><%= link_to 'Home', page_index_path %></li>
-        <li id = "degree_audit"><%= link_to 'Degee Audit', page_studentComplete_path %></li>
-        <li id= "signOut"><%=link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
-      </ul>
-      <form action= "/page/studentComplete">
-        <div>
-          <button>Generate Degree Audit</button>
-        </div>
-      </form>
+        <%end%> 
+        <nav class= "navbar navbar-expand-sm navbar-light">
+            <ul class= "navbar-nav">
+              <li class = "nav-item active"><%= link_to 'Home', page_index_path, :class => "nav-link"%></li>
+              <li class = "nav-item"><%= link_to 'Degee Audit', page_studentComplete_path, :class => "nav-link"%></li>
+              <li class = "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
+            </ul>
+        </nav>
+        <h2>Welcome</h2>
+
     <%end%>
   
   </div>
