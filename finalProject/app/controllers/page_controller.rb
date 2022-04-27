@@ -12,6 +12,8 @@ class PageController < ApplicationController
     @report = User.where(params[:user_id])
   end
   
+
+
   def userReport
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
@@ -22,14 +24,23 @@ class PageController < ApplicationController
 
   def majorRequirements
     @search = Course.find_by(subCat: params[:category])
+    @searchRemove = Course.find_by(subCat: params[:categoryRemove])
     @Courses = Course.all
     @CourseMapping = CourseMapping.create(course_mappings_params)
     @Mappings = CourseMapping.all
-    
   end
+
+
+  def remove 
+    @search = Course.find_by(subCat: params[:category])
+    @Courses = Course.all
+    @Mappings = CourseMapping.all
+  end
+
 
   def studentComplete
     @search = Course.find_by(subCat: params[:category])
+
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all
     @DegreeProgress = DegreeInProgress.all

@@ -10,8 +10,9 @@
   </ul>
 </nav>
 <h2>Major Requirements</h2>
+<div class = "text-center", "alignment">
 <p>Please enter a course you would like to add to the Computer Science Degree</p>
-
+<div class = "add">
 <%= form_tag(page_majorRequirements_path) do %>
     <%= text_field_tag 'category' %>
 <%end%>
@@ -26,7 +27,7 @@
             <% CourseMapping.create(course_id: c.id, degree_id: 1) %>
         <%end%>
     <%end%>
-<%end%>
+<% elsif @search == nil %>
 <% if added == 0 %>
     <% if @search == nil && params[:category] != nil %>
         <p><%= params[:category] %> does not exist as a course.</p>
@@ -34,9 +35,36 @@
         <p><%= @search.subCat %> is already a degree requirement!</p>
     <%end%>
 <%end%>
+<%end%>
+</div>
 
+
+
+<div class = "remove">
+<% remove = 0 %>
+<%= form_tag(page_majorRequirements_path) do %>
+    <%= text_field_tag 'categoryRemove' %>
+<%end%>
+<% if @searchRemove != nil %>
+    <% @Courses.each do |c| %>
+        <% if c.subCat == @searchRemove.subCat && CourseMapping.exists?(course_id: c.id) %>
+            <p>Successfully removed <%= @searchRemove.subCat %> as a degree requirement!</p>
+            <% removed = 1 %>
+            <% CourseMapping.find_by(course_id: c.id, degree_id: 1).destroy %>
+        <%end%>
+    <%end%>
+<%end%>
+<% if remove == 0 %>
+    <% if @searchRemove == nil && params[:categoryRemove] != nil %>
+        <p><%= params[:categoryRemove] %> does not exist as a course.</p>
+    <% elsif @searchRemove != nil %>
+        <p><%= @searchRemove.subCat %> is not a degree requirement!</p>
+    <%end%>
+<%end%>
+
+</div>
 <h3>Courses Required For Major</h3>
-<table>
+<table class="center">
     <tr>
         <th>Catalog Number</th>
         <th>Description</th>
@@ -50,3 +78,4 @@
         </tr>
     <%end%>
 </table>
+</div>
