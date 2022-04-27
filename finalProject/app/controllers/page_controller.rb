@@ -1,3 +1,4 @@
+require 'csv'
 class PageController < ApplicationController
   before_action :set_values, only: [:show, :edit, :update, :destroy]
 
@@ -9,6 +10,18 @@ class PageController < ApplicationController
   def adminReport
     @Users = User.all
     @report = User.where(params[:user_id])
+  end
+
+  def exportData
+
+    response.headers['Content-Type'] = 'text/csv'
+    response.headers['Content-Disposition'] = "attachement; filename = report.csv"
+    @Mappings = CourseMapping.all
+    @Finished = FinishedCourse.all
+    @DegreeProgress = DegreeInProgress.all
+    @Courses = Course.all
+    @report = User.find(params[:user_id])
+    render template: "page/exportData.csv.erb", :layout => false
   end
 
   def userReport

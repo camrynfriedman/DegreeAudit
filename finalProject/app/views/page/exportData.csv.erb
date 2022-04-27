@@ -1,0 +1,66 @@
+<%= CSV.generate_line(["Completed Courses"]) %>
+<%= CSV.generate_line(["Catalog Number", "Title", "Credit Hours"]) %>
+<% @DegreeProgress.each do |degree| %>
+    <% if degree.user_id == @report.id %>
+        <% @Finished.each do |finished| %>
+            <% if finished.user_id == @report.id %>
+                <% check = false %>
+                <% @Mappings.each do |mapping| %>
+                    <% if mapping.degree_id == degree.degree_id && mapping.course_id == finished.course_id %>
+                        <% check = true %>
+                    <%end%>
+                <%end%>
+                <% if !check %>
+                    <% thisCourse = @Courses.find_by(id: finished.course_id) %>
+                    <%= CSV.generate_line([thisCourse.subCat, thisCourse.title, thisCourse.MaxCH]) -%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
+<%end%>
+
+<%= CSV.generate_line(['Incomplete Courses']) %>
+<%= CSV.generate_line(['Catalog Number', 'Title', 'Credit Hours']) %>
+<% @DegreeProgress.each do |degree| %>
+    <% if degree.user_id == @report.id %>
+        <% @Mappings.each do |mapping| %>
+            <% if mapping.degree_id == degree.degree_id %>
+                <% check = false %>
+                <% @Finished.each do |finished| %>
+                    <% if @report.id == finished.user_id && finished.course_id == mapping.course_id %>
+                        <% check = true %>
+                    <%end%>
+                <%end%>
+                <% if !check %>
+                    <% thisCourse = @Courses.find_by(id: mapping.course_id) %>
+                    <%= CSV.generate_line([thisCourse.subCat, thisCourse.title, thisCourse.MaxCH]) -%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
+<%end%>
+
+<%= CSV.generate_line(["Completed Non-Major Courses"]) %>
+<%= CSV.generate_line(["Catalog Number", "Title", "Credit Hours"]) %>
+<% @DegreeProgress.each do |degree| %>
+    <% if degree.user_id == @report.id %>
+        <% @Finished.each do |finished| %>
+            <% if finished.user_id == @report.id %>
+                <% check = false %>
+                <% @Mappings.each do |mapping| %>
+                    <% if mapping.degree_id == degree.degree_id && mapping.course_id == finished.course_id %>
+                        <% check = true %>
+                    <%end%>
+                <%end%>
+                <% if !check %>
+                    <% thisCourse = @Courses.find_by(id: finished.course_id) %>
+                    <%= CSV.generate_line([thisCourse.subCat, thisCourse.title, thisCourse.MaxCH]) -%>
+                <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
+<%end%>
+
+
+
+

@@ -18,13 +18,15 @@
 <table class="center">
 <tr>
     <th>Student Email</th>
-    <th></th>
+    <th>Report</th>
+    <th>Export</th>
 </tr>
     <% @Users.each do |u| %>
         <% if u.id != 1 %>
             <tr>
                 <td><%= u.email %></td>
                 <td><%= link_to 'Generate Report', page_userReport_path(user_id: u.id) %> </td>
+                <td><%= link_to 'Export CSV', page_exportData_path(user_id: u.id) %> </td>
             </tr>
         <%end%>
     <%end%>
