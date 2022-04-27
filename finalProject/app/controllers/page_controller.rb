@@ -62,7 +62,7 @@ class PageController < ApplicationController
         end
       end
       if check
-      @addCourse.save
+        @addCourse.save
       end
     end
 

@@ -18,9 +18,36 @@
 <p>Enter a Course to add to the Computer Science Degree</p>
 
 <%= form_tag(page_majorRequirements_path) do %>
-    <%= text_field_tag 'category' %>
+    <%= text_field_tag 'category', nil, autocomplete: :off %>
 <%end%>
 
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+<script>
+    const courseArr = [];
+    <% @Courses.each do |course| %>
+        courseArr.push("<%= course.subCat %>");
+    <%end%>
+    const autoCompleteJS = new autoComplete({
+        selector: "#category",
+        placeHolder: "Search for a class...",
+        data: {
+            src: courseArr,
+            cache: true,
+        },
+        resultItem: {
+            highlight: true
+        },
+        submit: true,
+        events: {
+            input: {
+                selection: (event) => {
+                    const selection = event.detail.selection.value;
+                    autoCompleteJS.input.value = selection;
+                }
+            }
+        }
+    });
+</script>
 
 <% added = 0 %>
 <% if @search != nil %>
@@ -31,7 +58,7 @@
             <% CourseMapping.create(course_id: c.id, degree_id: 1) %>
         <%end%>
     <%end%>
-<% elsif @search == nil %>
+<%end%>
 <% if added == 0 %>
     <% if @search == nil && params[:category] != nil %>
         <p><%= params[:category] %> does not exist as a course.</p>
@@ -39,18 +66,17 @@
         <p><%= @search.subCat %> is already a degree requirement!</p>
     <%end%>
 <%end%>
-<%end%>
 </div>
-
 
 
 <div class = "center">
 <p>Enter a Course to remove from the Computer Science Degree</p>
 
-<% remove = 0 %>
 <%= form_tag(page_majorRequirements_path) do %>
-    <%= text_field_tag 'categoryRemove' %>
+    <%= text_field_tag 'categoryRemove', nil, autocomplete: :off %>
 <%end%>
+
+<% remove = 0 %>
 <% if @searchRemove != nil %>
     <% @Courses.each do |c| %>
         <% if c.subCat == @searchRemove.subCat && CourseMapping.exists?(course_id: c.id) %>

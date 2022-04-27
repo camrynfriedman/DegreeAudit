@@ -12,9 +12,39 @@
 <div class = "text-center", "alignment">
 <p>Enter a course that has been completed</p>
 
+
+
 <%= form_tag(page_studentComplete_path) do %>
-    <%= text_field_tag 'category' %>
+    <%= text_field_tag 'category', nil, autocomplete: :off %>
 <% end %>
+
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+<script>
+    const courseArr = [];
+    <% @Courses.each do |course| %>
+        courseArr.push("<%= course.subCat %>");
+    <%end%>
+    const autoCompleteJS = new autoComplete({
+        selector: "#category",
+        placeHolder: "Search for a class...",
+        data: {
+            src: courseArr,
+            cache: true,
+        },
+        resultItem: {
+            highlight: true
+        },
+        submit: true,
+        events: {
+            input: {
+                selection: (event) => {
+                    const selection = event.detail.selection.value;
+                    autoCompleteJS.input.value = selection;
+                }
+            }
+        }
+    });
+</script>
 
 <% added = 0 %>
 <% if @search != nil %>
