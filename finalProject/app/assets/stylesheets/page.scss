@@ -91,11 +91,13 @@ h1{
 
 }
 
+
 h2{
     font-size: 2rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-top: 20px;
-    margin-left:20px;
+
+    margin-bottom: 30px;
 }
 
 .return{
@@ -105,6 +107,10 @@ h2{
     margin-left: 50px
 }
 
+
+.entering{
+    display: flex;
+}
 .signUp{
     margin-left:43%;
     transform: scale(1.9);

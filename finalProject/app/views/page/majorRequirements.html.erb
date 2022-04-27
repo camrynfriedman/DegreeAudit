@@ -13,8 +13,10 @@
 </nav>
 <h2 class="text-center">Major Requirements</h2>
 <div class = "text-center", "alignment">
-<p>Please enter a course you would like to add to the Computer Science Degree</p>
-<div class = "add">
+<div class = "entering">
+<div class = "center">
+<p>Enter a Course to add to the Computer Science Degree</p>
+
 <%= form_tag(page_majorRequirements_path) do %>
     <%= text_field_tag 'category' %>
 <%end%>
@@ -42,7 +44,9 @@
 
 
 
-<div class = "remove">
+<div class = "center">
+<p>Enter a Course to remove from the Computer Science Degree</p>
+
 <% remove = 0 %>
 <%= form_tag(page_majorRequirements_path) do %>
     <%= text_field_tag 'categoryRemove' %>
@@ -51,7 +55,7 @@
     <% @Courses.each do |c| %>
         <% if c.subCat == @searchRemove.subCat && CourseMapping.exists?(course_id: c.id) %>
             <p>Successfully removed <%= @searchRemove.subCat %> as a degree requirement!</p>
-            <% removed = 1 %>
+            <% remove = 1 %>
             <% CourseMapping.find_by(course_id: c.id, degree_id: 1).destroy %>
         <%end%>
     <%end%>
@@ -63,7 +67,7 @@
         <p><%= @searchRemove.subCat %> is not a degree requirement!</p>
     <%end%>
 <%end%>
-
+</div>
 </div>
 <h3>Courses Required For Major</h3>
 <table class="center">
