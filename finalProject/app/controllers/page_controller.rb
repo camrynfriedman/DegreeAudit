@@ -4,15 +4,12 @@ class PageController < ApplicationController
   def index
     @DegreeSearch = DegreeInProgress.all
     @DegreeProgress = DegreeInProgress.create(degree_in_progress_params)
-
   end
 
   def adminReport
     @Users = User.all
     @report = User.where(params[:user_id])
   end
-  
-
 
   def userReport
     @Mappings = CourseMapping.all
@@ -23,23 +20,15 @@ class PageController < ApplicationController
   end
 
   def majorRequirements
-    @search = Course.find_by(subCat: params[:category])
-    @searchRemove = Course.find_by(subCat: params[:categoryRemove])
+    @search = Course.find_by(subCat: params[:category].to_s.upcase)
+    @searchRemove = Course.find_by(subCat: params[:categoryRemove].to_s.upcase)
     @Courses = Course.all
     @CourseMapping = CourseMapping.create(course_mappings_params)
     @Mappings = CourseMapping.all
   end
 
-
-  def remove 
-    @search = Course.find_by(subCat: params[:category])
-    @Courses = Course.all
-    @Mappings = CourseMapping.all
-  end
-
-
   def studentComplete
-    @search = Course.find_by(subCat: params[:category])
+    @search = Course.find_by(subCat: params[:category].to_s.upcase)
 
     @Mappings = CourseMapping.all
     @Finished = FinishedCourse.all

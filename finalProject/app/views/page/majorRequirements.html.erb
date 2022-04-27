@@ -61,7 +61,7 @@
 <%end%>
 <% if added == 0 %>
     <% if @search == nil && params[:category] != nil %>
-        <p><%= params[:category] %> does not exist as a course.</p>
+        <p><%= params[:category].to_s.upcase %> does not exist as a course.</p>
     <% elsif @search != nil %>
         <p><%= @search.subCat %> is already a degree requirement!</p>
     <%end%>
@@ -73,7 +73,9 @@
 <p>Enter a Course to remove from the Computer Science Degree</p>
 
 <%= form_tag(page_majorRequirements_path) do %>
-    <%= text_field_tag 'categoryRemove', nil, autocomplete: :off %>
+    <div class="autoComplete_wrapper">
+    <%= text_field_tag 'categoryRemove', nil, autocomplete: :off, placeholder: "Search for a class..."%>
+    </div>
 <%end%>
 
 <% remove = 0 %>
@@ -88,7 +90,7 @@
 <%end%>
 <% if remove == 0 %>
     <% if @searchRemove == nil && params[:categoryRemove] != nil %>
-        <p><%= params[:categoryRemove] %> does not exist as a course.</p>
+        <p><%= params[:categoryRemove].to_s.upcase %> does not exist as a course.</p>
     <% elsif @searchRemove != nil %>
         <p><%= @searchRemove.subCat %> is not a degree requirement!</p>
     <%end%>
