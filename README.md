@@ -13,3 +13,7 @@ If you would like to start with a fresh database, run the following commands in 
 
 
 To view the web application run "rails server" and open "localhost:3000" in your browser. To end the session, hit "Ctrl-C" in the terminal window.
+
+Admin Account Info:
+Email: admin@admin.com
+Password: adminpassword

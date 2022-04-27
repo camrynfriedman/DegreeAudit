@@ -1,0 +1,23 @@
+<div class = "remove">
+<% remove = 0 %>
+<%= form_tag(page_majorRequirements_path) do %>
+    <%= text_field_tag 'categoryRemove' %>
+<%end%>
+<% if @searchRemove != nil %>
+    <% @Courses.each do |c| %>
+        <% if c.subCat == @searchRemove.subCat && CourseMapping.exists?(course_id: c.id) %>
+            <p>Successfully removed <%= @searchRemove.subCat %> as a degree requirement!</p>
+            <% removed = 1 %>
+            <% CourseMapping.destroy(course_id: c.id, degree_id: 1) %>
+        <%end%>
+    <%end%>
+<%end%>
+<% if remove == 0 %>
+    <% if @searchRemove == nil && params[:category] != nil %>
+        <p><%= params[:categoryRemove] %> does not exist as a course.</p>
+    <% elsif @searchRemove != nil %>
+        <p><%= @searchRemove.subCat %> is not a degree requirement!</p>
+    <%end%>
+<%end%>
+
+</div>
