@@ -1,8 +1,10 @@
-<h2>Student Report</h2>
+<%= stylesheet_link_tag "page" %>
+
+<h2 class="text-center">Student Report</h2>
 
 <div class = "text-center", "alignment">
-<h3>Completed Major Courses</h3>
-<table class ="center">
+<h3 class="text-center">Completed Major Courses</h3>
+<table class="center">
     <tr>
         <th>Catalog Number</th>
         <th>Description</th>
@@ -32,11 +34,11 @@
 
 </table>
 
-<h3>Incomplete Major Courses</h3>
+<h3 class="text-center">Incomplete Major Courses</h3>
 <table class = "center">
     <tr>
-        <th>Catalog Number</th>
-        <th>Description</th>
+        <th class="text-center">Catalog Number</th>
+        <th class="text-center">Description</th>
     </tr>
 
     <% @DegreeProgress.each do |degree| %>
@@ -63,7 +65,7 @@
 
 </table>
 
-<h3>Completed Non-Major Courses</h3>
+<h3 class="text-center">Completed Non-Major Courses</h3>
 <table class = "center">
     <tr>
         <th>Catalog Number</th>
