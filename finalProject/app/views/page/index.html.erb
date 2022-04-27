@@ -12,7 +12,20 @@
       <li class= "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
     </ul>
     </nav>
-    <h2 class="text-center">Welcome</h2>
+    <div class="text-center">
+    <h2>Welcome</h2>
+    <p class= "paragraph">In the navigation bar at the top of the page, you will have 5 options: come back to this Home page, generate a student report, edit major requirements, add a course, and sign out. Below, you can find more information about what each of these does.</p>
+    <h3>Home</h3>
+    <p class= "paragraph">This will take you back to this page which provides helpful information and instructions about how to use the website.</p>
+    <h3>Generate Reports</h3>
+    <p class= "paragraph"> Enter Here</p>
+    <h3>Major Requirements</h3>
+    <p class= "paragraph"> Enter Here</p>
+    <h3>Add a Course</h3>
+    <p class= "paragraph">Enter Here</p>
+    <h3>Sign Out</h3>
+    <p class= "paragraph">This will take you back to the login page</h3>
+    </div>
  
 
     <% else %>
@@ -34,15 +47,17 @@
               <li class = "nav-item"><%=link_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link"%></li>
             </ul>
         </nav>
-        <h2 class="text-center">Welcome</h2>
+        <div class="text-center">
+        <h2>Welcome</h2>
 
-        <p>In the navigation bar at the top of the page, you will have 3 options: come back to this Home page, generate your degree audit, and sign out. Below, you can find more information about what each of these does.</p>
+        <p class= "paragraph">In the navigation bar at the top of the page, you will have 3 options: come back to this Home page, generate your degree audit, and sign out. Below, you can find more information about what each of these does.</p>
         <h3>Home</h3>
-        <p>This will take you back to this page which provides helpful information and instructions about how to use the website.</p></br>
+        <p class= "paragraph">This will take you back to this page which provides helpful information and instructions about how to use the website.</p></br>
         <h3>Degree Audit</h3>
-        <p>Here you will find a list of your completed and incompleted courses. If you see no incomplete courses, make sure to check with your administrator to ensure they have first added courses required for your major.</p></br>
+        <p class= "paragraph">Here you will find a list of your completed and incompleted courses. If you see no incomplete courses, make sure to check with your administrator to ensure they have first added courses required for your major.</p></br>
         <h3>Sign Out</h3>
-        <p>This will take you back to the login page</h3>
+        <p class= "paragraph">This will take you back to the login page</h3>
+        </div>
     <%end%>
   
   </div>

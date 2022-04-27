@@ -29,7 +29,7 @@
     <%end%>
     const autoCompleteJS = new autoComplete({
         selector: "#category",
-        placeHolder: "Search for a class...",
+        placeHolder: "Example: CSE 3901",
         data: {
             src: courseArr,
             cache: true,
@@ -74,7 +74,7 @@
 
 <%= form_tag(page_majorRequirements_path) do %>
     <div class="autoComplete_wrapper">
-    <%= text_field_tag 'categoryRemove', nil, autocomplete: :off, placeholder: "Search for a class..."%>
+    <%= text_field_tag 'categoryRemove', nil, autocomplete: :off, placeholder: "Example: CSE 3901"%>
     </div>
 <%end%>
 

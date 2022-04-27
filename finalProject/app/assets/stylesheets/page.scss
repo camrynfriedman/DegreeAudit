@@ -175,3 +175,21 @@ th, td{
 table{
     margin-bottom:30px;
 }
+
+.btn-primary{
+    background-color: crimson;
+    color: white;
+    border-color: crimson;
+}
+
+.btn-primary:hover{
+    background-color: crimson;
+    color: white;
+    border-color: red;
+}
+
+.paragraph{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
